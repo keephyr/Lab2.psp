@@ -1,6 +1,10 @@
 package objects;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class Manager extends Member{
     private String contact;
@@ -20,9 +24,9 @@ public class Manager extends Member{
 
     @Override
     public String toString() {
-        return "Manager{" +
+        return super.toString() + " - Manager{" +
                 "contact='" + contact + '\'' +
-                "} " +" - "+ super.toString();
+                "} ";
     }
 
     @Override
@@ -32,5 +36,12 @@ public class Manager extends Member{
         System.out.println("Введите контакт: ");
         String contact = scanner.nextLine();
         setContact(contact);
+    }
+
+    @Override
+    public List<String> Info(){
+        List<String> list = Arrays.asList(contact);
+        List<String> list2 = new ArrayList<>(super.Info());
+        return Stream.concat(list.stream(), list2.stream()).toList();
     }
 }

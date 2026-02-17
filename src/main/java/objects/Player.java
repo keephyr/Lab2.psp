@@ -1,6 +1,10 @@
 package objects;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class Player extends Member{
     private String position;
@@ -30,10 +34,10 @@ public class Player extends Member{
 
     @Override
     public String toString() {
-        return "Player{" +
+        return super.toString() + " - Player{" +
                 "position='" + position + '\'' +
                 ", number=" + number +
-                "} " +" - " + super.toString();
+                "} ";
     }
 
     @Override
@@ -46,5 +50,12 @@ public class Player extends Member{
         System.out.println("Введите номер: ");
         int number = scanner.nextInt();
         setNumber(number);
+    }
+
+    @Override
+    public List<String> Info(){
+        List<String> list = Arrays.asList(String.valueOf(number),position);
+        List<String> list2 = new ArrayList<>(super.Info());
+        return Stream.concat(list.stream(), list2.stream()).toList();
     }
 }
