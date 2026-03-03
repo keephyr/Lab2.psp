@@ -1,17 +1,18 @@
 package objects;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
-import java.util.stream.Stream;
-
 public class Manager extends Member{
     private String contact;
 
-    public Manager(String name, String team, int exp, String role, String contact) {
-        super(name, team, exp, role);
+    public Manager(String name, String team, int exp,int age, String contact) {
+        super(name, team, exp,age);
+        this.setRole("Manager");
         this.contact = contact;
+    }
+
+    public Manager() {
+        super();
+        this.setRole("Manager");
+        this.contact = "";
     }
 
     public String getContact() {
@@ -27,21 +28,5 @@ public class Manager extends Member{
         return super.toString() + " - Manager{" +
                 "contact='" + contact + '\'' +
                 "} ";
-    }
-
-    @Override
-    public void Edit(){
-        Scanner scanner = new Scanner(System.in);
-        super.Edit();
-        System.out.println("Введите контакт: ");
-        String contact = scanner.nextLine();
-        setContact(contact);
-    }
-
-    @Override
-    public List<String> Info(){
-        List<String> list = Arrays.asList(contact);
-        List<String> list2 = new ArrayList<>(super.Info());
-        return Stream.concat(list.stream(), list2.stream()).toList();
     }
 }
